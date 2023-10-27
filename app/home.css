@@ -1,0 +1,120 @@
+.cards-main {
+  display: flex;
+  flex-direction: column;
+}
+.cards-background {
+  background-image: url('/images/bg-main-mobile.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 44vh;
+}
+.frontCard,
+.backCard {
+  width: 75vw;
+  height: auto;
+}
+.backCard {
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+}
+.frontCard {
+  position: absolute;
+  top: 8rem;
+  left: 1rem;
+  filter: drop-shadow(0 0.1rem 100px rgb(128, 128, 128));
+}
+.card-details {
+  padding: 0 1.5rem;
+}
+.card-form {
+  display: flex;
+  flex-direction: column;
+}
+.card-form > * {
+  margin-bottom: 1rem;
+}
+.card-form label {
+  text-transform: uppercase;
+}
+.card-form input {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border-style: solid;
+  font-size: 1.2rem;
+}
+.card-form input::placeholder {
+  opacity: 0.3;
+}
+.card-date-cvc-container {
+  display: flex;
+  justify-content: space-between;
+}
+.card-date-container,
+.card-cvc-container {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+}
+.card-date-input-container > input,
+.card-cvc-container > input {
+  width: 100%;
+}
+.card-date-input-container > input:first-child {
+  margin-right: 0.5rem;
+}
+.card-date-container > label,
+.card-cvc-container > label {
+  margin-bottom: 1rem;
+}
+.card-date-input-container {
+  display: flex;
+  margin: none;
+}
+.card-button {
+  padding: 0.8rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--veryDarkViolet);
+  color: var(--white);
+}
+
+@media (min-width: 480px) {
+  .cards-main {
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 100vh;
+  }
+  .cards-background {
+    background-image: url('/images/bg-main-desktop.png');
+    min-height: 100%;
+    /* width: 40vw; */
+  }
+  .frontCard,
+  .backCard {
+    width: 25vw;
+    height: auto;
+    filter: drop-shadow(0 0.1rem 100px rgba(46, 46, 46, 0.25));
+  }
+  .backCard {
+    position: relative;
+    /* position: sticky; */
+    /* top: 21rem;
+    left: 14rem; */
+  }
+  .frontCard {
+    position: relative;
+    top: -5rem;
+    left: 10rem;
+  }
+  .card-details {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+  }
+  .card-form {
+    width: 50%;
+    justify-content: center;
+  }
+}
