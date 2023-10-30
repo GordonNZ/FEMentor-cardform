@@ -7,23 +7,78 @@
   background-repeat: no-repeat;
   background-size: contain;
   height: 44vh;
+  margin-bottom: 1rem;
+}
+.frontCard-container,
+.backCard-container {
+  position: absolute;
+  display: inline-block;
+}
+.backCard-container {
+  /* border: 1px solid red; */
+  top: 10rem;
+  right: 1rem;
+}
+.frontCard-container {
+  top: -5rem;
+  right: 8rem;
+}
+.cardLogo {
+  width: 4vw;
+  height: auto;
+  position: absolute;
+  top: 10%;
+  left: 6%;
 }
 .frontCard,
 .backCard {
-  width: 75vw;
+  width: clamp(20rem, 25vw, 25rem);
   height: auto;
+  filter: drop-shadow(0 0.1rem 100px rgba(46, 46, 46, 0.4));
 }
 .backCard {
-  position: absolute;
+  /* position: absolute;
   top: 2rem;
-  right: 1rem;
+  right: 1rem; */
+  max-width: 100%;
+  display: block;
 }
 .frontCard {
-  position: absolute;
+  /* position: absolute;
   top: 8rem;
-  left: 1rem;
-  filter: drop-shadow(0 0.1rem 100px rgb(128, 128, 128));
+  left: 1rem; */
+  max-width: 100%;
+  display: block;
 }
+.backCard-container > p,
+.frontCard-container > p {
+  color: var(--white);
+  position: absolute;
+  letter-spacing: 0.12rem;
+}
+.card-cvc {
+  top: 44%;
+  right: 15%;
+  font-size: 1vw;
+}
+.card-numbers {
+  top: 55%;
+  left: 8%;
+  /* transform: translate(-50%, 10%); */
+  font-size: 1.6vw;
+}
+.card-name {
+  bottom: 12%;
+  text-transform: uppercase;
+  left: 8%;
+  font-size: 1vw;
+}
+.card-date {
+  bottom: 12%;
+  right: 8%;
+  font-size: 1vw;
+}
+
 .card-details {
   padding: 0 1.5rem;
 }
@@ -36,6 +91,8 @@
 }
 .card-form label {
   text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.85rem;
 }
 .card-form input {
   padding: 0.5rem 1rem;
@@ -78,6 +135,7 @@
   border-radius: 6px;
   background-color: var(--veryDarkViolet);
   color: var(--white);
+  cursor: pointer;
 }
 
 @media (min-width: 480px) {
@@ -88,33 +146,68 @@
   }
   .cards-background {
     background-image: url('/images/bg-main-desktop.png');
-    min-height: 100%;
-    /* width: 40vw; */
+    background-size: cover;
+    min-height: 100vh;
+    width: 35%;
+    margin: 0;
   }
-  .frontCard,
-  .backCard {
-    width: 25vw;
-    height: auto;
-    filter: drop-shadow(0 0.1rem 100px rgba(46, 46, 46, 0.25));
+  .cards-img-container {
+    position: absolute;
+    top: 30%;
+    height: 20%;
+    width: clamp(15rem, 50%, 50% + 1rem);
   }
-  .backCard {
-    position: relative;
-    /* position: sticky; */
-    /* top: 21rem;
-    left: 14rem; */
+  .cards-img-container > img {
+    /* position: absolute; */
+    /* width: 50%; */
+    /* max-width: 26rem; */
+    /* min-width: 15rem; */
+    top: 0;
+    right: 0;
+    left: auto;
   }
-  .frontCard {
-    position: relative;
-    top: -5rem;
-    left: 10rem;
+  .cards-img-container > .backCard {
+    top: 110%;
+    right: 0;
+  }
+  .cards-img-container > .frontCard {
+    top: -50%;
+    right: 15%;
   }
   .card-details {
-    width: 60%;
+    width: 55%;
     display: flex;
     justify-content: center;
   }
   .card-form {
     width: 50%;
+    justify-content: center;
+  }
+}
+@media (min-width: 480px) and (max-width: 1220px) {
+  .card-date-cvc-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .card-date-container,
+  .card-cvc-container {
+    width: 100%;
+  }
+  .cards-background {
+    width: 30%;
+  }
+  .cards-img-container {
+    left: 5%;
+  }
+  .cards-img-container > .backCard {
+    top: 80%;
+    right: 5%;
+  }
+  .cards-img-container > .frontCard {
+    top: -10%;
+  }
+  .card-form {
+    width: 60%;
     justify-content: center;
   }
 }
