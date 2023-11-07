@@ -1,3 +1,11 @@
+import { useState } from 'react';
+
+interface CardErrors {
+  cardName: string;
+  cardNumbers: string;
+  cardDate: string;
+  cardCode: string;
+}
 interface CardDetails {
   numbers: string;
   name: string;
@@ -11,6 +19,14 @@ interface FormProps {
 }
 
 export default function Form({ setCardDetails, cardDetails }: FormProps) {
+  const [validated, setValidated] = useState(false);
+  const [errors, setErrors] = useState<CardErrors>({
+    cardName: '',
+    cardNumbers: '',
+    cardDate: '',
+    cardCode: '',
+  });
+
   const validateName = (name: string) => {
     if (name === '') {
       setCardDetails({ ...cardDetails, name: 'Jane Appleseed' });
@@ -55,30 +71,57 @@ export default function Form({ setCardDetails, cardDetails }: FormProps) {
     setCardDetails({ ...cardDetails, name: e.target.value });
     if (validateName(e.target.value)) {
       console.log('pass');
+      setErrors({ ...errors, cardName: '' });
+    } else {
+      setErrors({ ...errors, cardName: 'Wrong format, must be 2 names' });
     }
   };
   const handleNumberInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCardDetails({ ...cardDetails, numbers: e.target.value });
     if (validateNumbers(e.target.value)) {
       console.log('pass');
+      setErrors({ ...errors, cardNumbers: '' });
+    } else {
+      setErrors({ ...errors, cardNumbers: 'Wrong format, numbers only' });
     }
   };
   const handleMonthInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCardDetails({ ...cardDetails, month: e.target.value });
     if (validateMonth(e.target.value)) {
       console.log('pass');
+      setErrors({ ...errors, cardDate: '' });
+    } else {
+      setErrors({
+        ...errors,
+        cardDate: 'Wrong format, must be 2 numbers and a valid month',
+      });
     }
   };
   const handleYearInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCardDetails({ ...cardDetails, year: e.target.value });
     if (validateYear(e.target.value)) {
       console.log('pass');
+      setErrors({ ...errors, cardDate: '' });
+    } else {
+      setErrors({ ...errors, cardDate: 'Wrong format, must be 2 numbers' });
     }
   };
   const handleCVCInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCardDetails({ ...cardDetails, code: e.target.value });
     if (validateCode(e.target.value)) {
       console.log('pass');
+      setErrors({ ...errors, cardCode: '' });
+    } else {
+      setErrors({ ...errors, cardCode: 'Wrong format, must be 3 numbers' });
+    }
+  };
+
+  const handleFormValidate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (validated) {
+      console.log('Form is filled in correctly, success screen');
+    } else {
+      console.log('Something in the form is wrong');
     }
   };
   return (
@@ -89,13 +132,18 @@ export default function Form({ setCardDetails, cardDetails }: FormProps) {
           placeholder='e.g. Jane Appleseed'
           type='text'
           onChange={handleNameInput}
+          className={errors.cardName ? 'input-error' : ''}
         ></input>
+        <span className='error'>{errors.cardName}</span>
+
         <label>Card Number</label>
         <input
           placeholder='e.g. 1234 5678 9123 0000'
           type='text'
           onChange={handleNumberInput}
+          className={errors.cardNumbers ? 'input-error' : ''}
         ></input>
+        <span className='error'>{errors.cardNumbers}</span>
         <div className='card-date-cvc-container'>
           <div className='card-date-container'>
             <label>Exp. Date (mm/yy)</label>
@@ -104,13 +152,16 @@ export default function Form({ setCardDetails, cardDetails }: FormProps) {
                 placeholder='MM'
                 type='text'
                 onChange={handleMonthInput}
+                className={errors.cardDate ? 'input-error' : ''}
               ></input>
               <input
                 placeholder='YY'
                 type='text'
                 onChange={handleYearInput}
+                className={errors.cardDate ? 'input-error' : ''}
               ></input>
             </div>
+            <span className='error'>{errors.cardDate}</span>
           </div>
           <div className='card-cvc-container'>
             <label>CVC</label>
@@ -118,10 +169,14 @@ export default function Form({ setCardDetails, cardDetails }: FormProps) {
               placeholder='e.g. 123 '
               type='text'
               onChange={handleCVCInput}
+              className={errors.cardCode ? 'input-error' : ''}
             ></input>
+            <span className='error'>{errors.cardCode}</span>
           </div>
         </div>
-        <button className='card-button'>Confirm</button>
+        <button className='card-button' onClick={handleFormValidate}>
+          Confirm
+        </button>
       </form>
     </section>
   );

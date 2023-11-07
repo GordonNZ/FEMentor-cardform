@@ -87,21 +87,29 @@
   flex-direction: column;
 }
 .card-form > * {
-  margin-bottom: 1rem;
+  /* margin-bottom: 0.5rem; */
 }
 .card-form label {
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   font-size: 0.85rem;
+  margin: 1rem 0 0.75rem;
 }
 .card-form input {
   padding: 0.5rem 1rem;
   border-radius: 6px;
-  border-style: solid;
+  border: 1px solid var(--lightGrayishViolet);
   font-size: 1.2rem;
+  outline: none;
 }
 .card-form input::placeholder {
-  opacity: 0.3;
+  color: var(--darkGrayishViolet);
+}
+.card-form input:focus {
+  border: 1px solid hsl(278, 94%, 30%);
+}
+.card-form .input-error {
+  border: 1px solid var(--redError);
 }
 .card-date-cvc-container {
   display: flex;
@@ -136,6 +144,12 @@
   background-color: var(--veryDarkViolet);
   color: var(--white);
   cursor: pointer;
+}
+
+.card-form .error {
+  font-size: 0.8rem;
+  color: var(--redError);
+  margin-top: 0.5rem;
 }
 
 @media (min-width: 480px) {
