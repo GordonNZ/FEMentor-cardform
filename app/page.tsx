@@ -4,6 +4,7 @@ import styles from './page.module.css';
 import './home.css';
 import { useState } from 'react';
 import Form from './_components/form/form';
+import Completed from './_components/completed/completed';
 
 type CardData = {
   numbers: string;
@@ -64,7 +65,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Form cardDetails={cardDetails} setCardDetails={setCardDetails} />
+      {/* <Form cardDetails={cardDetails} setCardDetails={setCardDetails} /> */}
+      <Completed />
     </main>
   );
 }

@@ -118,8 +118,21 @@ export default function Form({ setCardDetails, cardDetails }: FormProps) {
 
   const handleFormValidate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (validated) {
+    const isNameValid = validateName(cardDetails.name);
+    const isNumbersValid = validateNumbers(cardDetails.numbers);
+    const isMonthValid = validateMonth(cardDetails.month);
+    const isYearValid = validateYear(cardDetails.year);
+    const isCodeValid = validateCode(cardDetails.code);
+
+    if (
+      isNameValid &&
+      isNumbersValid &&
+      isMonthValid &&
+      isYearValid &&
+      isCodeValid
+    ) {
       console.log('Form is filled in correctly, success screen');
+      setValidated(true);
     } else {
       console.log('Something in the form is wrong');
     }
