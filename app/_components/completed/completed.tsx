@@ -14,7 +14,12 @@ export default function Completed() {
         />
         <h1>Thank You!</h1>
         <p>{`We've added your card details`}</p>
-        <button className='card-button'>Continue</button>
+        <button
+          className='card-button'
+          onClick={() => window.location.reload()}
+        >
+          Continue
+        </button>
       </div>
     </section>
   );
