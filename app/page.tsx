@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 import './home.css';
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 import Form from './_components/form/form';
 
 type CardData = {
@@ -13,14 +13,30 @@ type CardData = {
   code: string;
 };
 
+type CardContextProps = {
+  cardDetails: CardData;
+  setCardDetails: React.Dispatch<React.SetStateAction<CardData>>;
+};
+
+const defaultCardDetails: CardData = {
+  numbers: '0000 0000 0000 0000',
+  name: 'Jane Appleseed',
+  month: '00',
+  year: '00',
+  code: '000',
+};
+
+export const cardContext = createContext<CardContextProps>({
+  cardDetails: defaultCardDetails,
+  setCardDetails: () => {},
+});
+
+// interface HomeProps {
+//   children: JSX.Element; // Specify the type you expect for children
+// }
+
 export default function Home() {
-  const [cardDetails, setCardDetails] = useState<CardData>({
-    numbers: '0000 0000 0000 0000',
-    name: 'Jane Appleseed',
-    month: '00',
-    year: '00',
-    code: '000',
-  });
+  const [cardDetails, setCardDetails] = useState<CardData>(defaultCardDetails);
 
   return (
     <main className='cards-main'>
@@ -64,7 +80,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Form cardDetails={cardDetails} setCardDetails={setCardDetails} />
+      <cardContext.Provider value={{ cardDetails, setCardDetails }}>
+        <Form cardDetails={cardDetails} setCardDetails={setCardDetails} />
+      </cardContext.Provider>
     </main>
   );
 }
