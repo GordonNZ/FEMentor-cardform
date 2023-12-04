@@ -4,7 +4,8 @@ import { cardContext } from '../../page';
 interface ErrorsProp {
   cardName: string;
   cardNumbers: string;
-  cardDate: string;
+  cardMonth: string;
+  cardYear: string;
   cardCode: string;
 }
 
@@ -50,7 +51,7 @@ export default function Details({ errors, handleFormValidate }: DetailsProps) {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setCardDetails({ ...cardDetails, month: e.target.value })
                 }
-                className={errors.cardDate ? 'input-error' : ''}
+                className={errors.cardMonth ? 'input-error' : ''}
               ></input>
               <input
                 placeholder='YY'
@@ -58,10 +59,11 @@ export default function Details({ errors, handleFormValidate }: DetailsProps) {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setCardDetails({ ...cardDetails, year: e.target.value })
                 }
-                className={errors.cardDate ? 'input-error' : ''}
+                className={errors.cardYear ? 'input-error' : ''}
               ></input>
             </div>
-            <span className='error'>{errors.cardDate}</span>
+            <span className='error'>{errors.cardMonth}</span>
+            <span className='error'>{errors.cardYear}</span>
           </div>
           <div className='card-cvc-container'>
             <label>CVC</label>

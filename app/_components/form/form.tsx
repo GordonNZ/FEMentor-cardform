@@ -5,7 +5,8 @@ import Details from '../details/details';
 interface CardErrors {
   cardName: string;
   cardNumbers: string;
-  cardDate: string;
+  cardMonth: string;
+  cardYear: string;
   cardCode: string;
 }
 interface CardDetails {
@@ -25,7 +26,8 @@ export default function Form({ setCardDetails, cardDetails }: FormProps) {
   const [errors, setErrors] = useState<CardErrors>({
     cardName: '',
     cardNumbers: '',
-    cardDate: '',
+    cardMonth: '',
+    cardYear: '',
     cardCode: '',
   });
 
@@ -54,10 +56,9 @@ export default function Form({ setCardDetails, cardDetails }: FormProps) {
     console.log(`testing: ${year}`);
     if (year === '') {
       setCardDetails({ ...cardDetails, year: '00' });
-    } else if (/^\d{2}$/.test(year)) {
-      return true;
+    } else {
+      return /^\d{2}$/.test(year);
     }
-    return false;
   };
   const validateCode = (code: string) => {
     console.log(`testing: ${code}`);
@@ -70,64 +71,112 @@ export default function Form({ setCardDetails, cardDetails }: FormProps) {
   };
 
   const handleNameInput = (name: string) => {
+    console.log('name is working');
     if (validateName(name)) {
-      console.log('pass');
-      setErrors({ ...errors, cardName: '' });
+      console.log('name input pass');
+      // setErrors({ ...errors, cardName: '' });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cardName: '',
+      }));
     } else {
-      console.log('fail');
-      setErrors({ ...errors, cardName: 'Wrong format, must be 2 names' });
+      console.log('name input fail');
+      // setErrors({ ...errors, cardName: 'Wrong format, must be 2 names' });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cardName: 'Wrong format, must be 2 names',
+      }));
     }
   };
   const handleNumberInput = (numbers: string) => {
     if (validateNumbers(numbers)) {
       console.log('pass');
-      setErrors({ ...errors, cardNumbers: '' });
+      // setErrors({ ...errors, cardNumbers: '' });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cardNumbers: '',
+      }));
     } else {
-      setErrors({ ...errors, cardNumbers: 'Wrong format, numbers only' });
+      // setErrors({ ...errors, cardNumbers: 'Wrong format, numbers only' });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cardNumbers: 'Wrong format, numbers only',
+      }));
     }
   };
   const handleMonthInput = (month: string) => {
     if (validateMonth(month)) {
       console.log('pass');
-      setErrors({ ...errors, cardDate: '' });
+      // setErrors({ ...errors, cardDate: '' });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cardMonth: '',
+      }));
     } else {
-      setErrors({
-        ...errors,
-        cardDate: 'Wrong format, must be 2 numbers and a valid month',
-      });
+      // setErrors({
+      //   ...errors,
+      //   cardDate: 'Wrong format, must be 2 numbers and a valid month',
+      // });
+
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cardMonth: 'Wrong format, must be 2 numbers and a valid month',
+      }));
     }
   };
   const handleYearInput = (year: string) => {
     if (validateYear(year)) {
       console.log('pass');
-      setErrors({ ...errors, cardDate: '' });
+      // setErrors({ ...errors, cardDate: '' });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cardYear: '',
+      }));
     } else {
-      setErrors({ ...errors, cardDate: 'Wrong format, must be 2 numbers' });
+      // setErrors({ ...errors, cardDate: 'Wrong format, must be 2 numbers' });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cardYear: 'Wrong format, must be 2 numbers',
+      }));
     }
   };
   const handleCVCInput = (code: string) => {
+    console.log('code is working');
     if (validateCode(code)) {
       console.log('pass');
-      setErrors({ ...errors, cardCode: '' });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cardCode: '',
+      }));
     } else {
-      setErrors({ ...errors, cardCode: 'Wrong format, must be 3 numbers' });
+      // setErrors({ ...errors, cardCode: 'Wrong format, must be 3 numbers' });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cardCode: 'Wrong format, must be 3 numbers',
+      }));
     }
+  };
+  const handleInput = () => {
+    handleNameInput(cardDetails.name);
+    handleNumberInput(cardDetails.numbers);
+    handleMonthInput(cardDetails.month);
+    handleCVCInput(cardDetails.code);
+    handleYearInput(cardDetails.year);
   };
 
   const handleFormValidate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
-    handleNameInput(cardDetails.name);
-    handleNumberInput(cardDetails.numbers);
-    handleMonthInput(cardDetails.month);
-    handleYearInput(cardDetails.year);
-    handleCVCInput(cardDetails.code);
 
     const isNameValid = validateName(cardDetails.name);
     const isNumbersValid = validateNumbers(cardDetails.numbers);
     const isMonthValid = validateMonth(cardDetails.month);
     const isYearValid = validateYear(cardDetails.year);
     const isCodeValid = validateCode(cardDetails.code);
+
+    handleInput();
+
+    console.log(cardDetails);
+    console.log(errors);
 
     if (
       isNameValid &&
