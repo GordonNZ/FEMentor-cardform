@@ -35,15 +35,19 @@ export default function Form({ setCardDetails, cardDetails }: FormProps) {
     if (name === '') {
       setCardDetails({ ...cardDetails, name: 'Jane Appleseed' });
     }
-    console.log(`testing: ${name}`);
-    return /^[a-zA-Z]+ [a-zA-Z]+$/.test(name);
+    if (name !== 'Jane Appleseed') {
+      console.log(`testing: ${name}`);
+      return /^[a-zA-Z]+ [a-zA-Z]+$/.test(name);
+    }
   };
   const validateNumbers = (numbers: string) => {
     if (numbers === '') {
       setCardDetails({ ...cardDetails, numbers: '0000 0000 0000 0000' });
     }
-    console.log(`testing: ${numbers}`);
-    return /^\d{4} \d{4} \d{4} \d{4}$/.test(numbers);
+    if (numbers !== '0000 0000 0000 0000') {
+      console.log(`testing: ${numbers}`);
+      return /^\d{4} \d{4} \d{4} \d{4}$/.test(numbers);
+    }
   };
   const validateMonth = (month: string) => {
     if (month === '') {
@@ -63,11 +67,10 @@ export default function Form({ setCardDetails, cardDetails }: FormProps) {
   const validateCode = (code: string) => {
     console.log(`testing: ${code}`);
     if (code === '') {
-      setCardDetails({ ...cardDetails, code: '00' });
-    } else if (/^\d{3}$/.test(code)) {
-      return true;
+      setCardDetails({ ...cardDetails, code: '000' });
+    } else if (code !== '000') {
+      return /^\d{3}$/.test(code);
     }
-    return false;
   };
 
   const handleNameInput = (name: string) => {
@@ -156,6 +159,7 @@ export default function Form({ setCardDetails, cardDetails }: FormProps) {
       }));
     }
   };
+
   const handleInput = () => {
     handleNameInput(cardDetails.name);
     handleNumberInput(cardDetails.numbers);
