@@ -16,15 +16,16 @@
 }
 .backCard-container {
   /* border: 1px solid red; */
-  top: 10rem;
-  right: 1rem;
+  top: 3rem;
+  right: 0.8rem;
 }
 .frontCard-container {
-  top: -5rem;
-  right: 8rem;
+  top: 10rem;
+  left: 0.8rem;
 }
 .cardLogo {
-  width: 4vw;
+  width: 12vw;
+  max-width: 3.5rem;
   height: auto;
   position: absolute;
   top: 10%;
@@ -59,24 +60,24 @@
 .card-cvc {
   top: 44%;
   right: 15%;
-  font-size: 1vw;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
 }
 .card-numbers {
-  top: 55%;
+  top: 50%;
   left: 8%;
   /* transform: translate(-50%, 10%); */
-  font-size: clamp(1vw, 1.75vw, 1.9vw);
+  font-size: clamp(16px, 16px + 1vw, 1.5rem);
 }
 .card-name {
   bottom: 12%;
   text-transform: uppercase;
   left: 8%;
-  font-size: 1vw;
+  font-size: clamp(0.5rem, 0.5rem + 1.5vw, 1.2rem);
 }
 .card-date {
   bottom: 12%;
   right: 8%;
-  font-size: 1vw;
+  font-size: clamp(0.5rem, 0.5rem + 1.5vw, 1.2rem);
 }
 
 .card-details {
@@ -187,24 +188,25 @@
     top: 30%;
     height: 20%;
     width: clamp(15rem, 50%, 50% + 1rem);
+    border: 1px solid red;
   }
   .cards-img-container > img {
     /* position: absolute; */
     /* width: 50%; */
     /* max-width: 26rem; */
     /* min-width: 15rem; */
-    top: 0;
+    /* top: 0;
     right: 0;
-    left: auto;
+    left: auto; */
   }
-  .cards-img-container > .backCard {
+  /* .cards-img-container > .backCard {
     top: 110%;
     right: 0;
   }
   .cards-img-container > .frontCard {
     top: -50%;
     right: 15%;
-  }
+  } */
   .card-details {
     width: 55%;
     display: flex;
@@ -225,6 +227,30 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  .card-numbers {
+    top: 50%;
+    left: 8%;
+    font-size: clamp(0.25rem, 0.65rem + 1vw, 1.75rem);
+  }
+  .card-name {
+    bottom: 12%;
+    text-transform: uppercase;
+    left: 8%;
+    font-size: clamp(0.25rem, 0.4rem + 1vw, 1.2rem);
+  }
+  .card-date {
+    bottom: 12%;
+    right: 8%;
+    font-size: clamp(0.25rem, 0.4rem + 1vw, 1.2rem);
+  }
+  .backCard-container {
+    top: 6rem;
+    right: 0rem;
+  }
+  .frontCard-container {
+    top: -7rem;
+    left: 0rem;
   }
 }
 @media (min-width: 480px) and (max-width: 1220px) {
