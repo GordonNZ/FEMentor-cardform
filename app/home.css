@@ -15,12 +15,11 @@
   display: inline-block;
 }
 .backCard-container {
-  /* border: 1px solid red; */
-  top: 3rem;
+  top: 2rem;
   right: 0.8rem;
 }
 .frontCard-container {
-  top: 10rem;
+  top: 9.5rem;
   left: 0.8rem;
 }
 .cardLogo {
@@ -38,16 +37,10 @@
   filter: drop-shadow(0 0.1rem 100px rgba(46, 46, 46, 0.4));
 }
 .backCard {
-  /* position: absolute;
-  top: 2rem;
-  right: 1rem; */
   max-width: 100%;
   display: block;
 }
 .frontCard {
-  /* position: absolute;
-  top: 8rem;
-  left: 1rem; */
   max-width: 100%;
   display: block;
 }
@@ -81,14 +74,11 @@
 }
 
 .card-details {
-  padding: 0 1.5rem;
+  padding: 2rem 1.5rem;
 }
 .card-form {
   display: flex;
   flex-direction: column;
-}
-.card-form > * {
-  /* margin-bottom: 0.5rem; */
 }
 .card-form label {
   text-transform: uppercase;
@@ -185,28 +175,12 @@
   }
   .cards-img-container {
     position: absolute;
-    top: 30%;
-    height: 20%;
-    width: clamp(15rem, 50%, 50% + 1rem);
-    border: 1px solid red;
+    top: 35%;
+    left: 15%;
+    height: 30%;
+    width: clamp(15rem, 35%, 50% + 1rem);
+    /* border: 1px solid red; */
   }
-  .cards-img-container > img {
-    /* position: absolute; */
-    /* width: 50%; */
-    /* max-width: 26rem; */
-    /* min-width: 15rem; */
-    /* top: 0;
-    right: 0;
-    left: auto; */
-  }
-  /* .cards-img-container > .backCard {
-    top: 110%;
-    right: 0;
-  }
-  .cards-img-container > .frontCard {
-    top: -50%;
-    right: 15%;
-  } */
   .card-details {
     width: 55%;
     display: flex;
@@ -230,22 +204,22 @@
   }
   .card-numbers {
     top: 50%;
-    left: 8%;
+    left: 7%;
     font-size: clamp(0.25rem, 0.65rem + 1vw, 1.75rem);
   }
   .card-name {
     bottom: 12%;
     text-transform: uppercase;
     left: 8%;
-    font-size: clamp(0.25rem, 0.4rem + 1vw, 1.2rem);
+    font-size: clamp(0.25rem, 0.4rem + 1vw, 1rem);
   }
   .card-date {
     bottom: 12%;
     right: 8%;
-    font-size: clamp(0.25rem, 0.4rem + 1vw, 1.2rem);
+    font-size: clamp(0.25rem, 0.4rem + 1vw, 1rem);
   }
   .backCard-container {
-    top: 6rem;
+    top: 8rem;
     right: 0rem;
   }
   .frontCard-container {
@@ -262,21 +236,17 @@
   .card-cvc-container {
     width: 100%;
   }
+  .cards-img-container {
+    left: 5%;
+    width: clamp(15rem, 50%, 50% + 1rem);
+  }
   .cards-background {
     width: 30%;
   }
-  .cards-img-container {
-    left: 5%;
+  .frontCard-container {
+    top: -4.5rem;
   }
-  .cards-img-container > .backCard {
-    top: 80%;
-    right: 5%;
-  }
-  .cards-img-container > .frontCard {
-    top: -10%;
-  }
-  .card-form {
-    width: 60%;
-    justify-content: center;
+  .backCard-container {
+    top: 7rem;
   }
 }
