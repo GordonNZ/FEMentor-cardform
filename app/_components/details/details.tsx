@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { cardContext } from '../../page';
+import { cardContext } from '@/app/cardContext';
 
 interface ErrorsProp {
   cardName: string;
